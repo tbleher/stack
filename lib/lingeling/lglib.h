@@ -7,6 +7,7 @@
 
 #include <stdio.h>				// for 'FILE'
 #include <stdlib.h>				// for 'int64_t'
+#include <stdint.h>
 
 //--------------------------------------------------------------------------
 
