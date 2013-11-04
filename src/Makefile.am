@@ -8,7 +8,7 @@ all-local: liboptck.la liboptfe.la
 	@cd $(top_builddir)/lib && $(LN_S) -f ../src/.libs/liboptck.so
 	@cd $(top_builddir)/lib && $(LN_S) -f ../src/.libs/liboptfe.so
 
-libsat_la_CPPFLAGS = -I$(top_builddir)/lib
+libsat_la_CPPFLAGS = -I$(top_srcdir)/lib
 libsat_la_SOURCES  = ValueGen.cc PathGen.cc Diagnostic.cc SMTSolver.cc
 libsat_la_SOURCES += PHIRange.cc LoopPrepare.cc ElimAssert.cc
 libsat_la_SOURCES += BugOn.cc BugOnInt.cc BugOnNull.cc BugOnGep.cc
@@ -17,12 +17,11 @@ libsat_la_SOURCES += BugOnLoop.cc BugOnAssert.cc
 libsat_la_SOURCES += BugOnLibc.cc BugOnLinux.cc
 libsat_la_SOURCES += ValueGen.h PathGen.h Diagnostic.h SMTSolver.h BugOn.h
 libsat_la_SOURCES += SMTBoolector.cc GlobalTimeout.cc
-libsat_la_LIBADD   = -lboolector -llgl
+libsat_la_LIBADD   = $(top_builddir)/lib/libboolector.la
 #libsat_la_SOURCES += SMTSonolar.cc
 #libsat_la_LIBADD   = -lsonolar
 #libsat_la_SOURCES += SMTZ3.cc
 #libsat_la_LIBADD   = -lz3 -lgomp
-libsat_la_LDFLAGS  = -L$(top_builddir)/lib
 
 liboptck_la_SOURCES = AntiFunctionPass.cc AntiDCE.cc AntiAlgebra.cc AntiSimplify.cc
 liboptck_la_SOURCES += InlineOnly.cc SimplifyDelete.cc IgnoreLoopInitial.cc LoadElim.cc
